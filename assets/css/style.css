@@ -3,9 +3,9 @@
 }
 
 .row{
-    height: 200px;
-    width: 85%;
-    text-align: center;
+    margin: auto;
+    width: 100%;
+    text-align: left;
 }
 
 html {
@@ -15,11 +15,55 @@ html {
 img{
     width: 200px;
     height: 200px;
-    margin: 10px 10px;
 }
   
 h2{
     width: 100%;
     margin-bottom: 10px;
     margin-top: 10px;
+}
+
+#ppfVideo{
+    z-index: 100;
+}
+
+#gameContainer{
+    z-index: 1;
+}
+
+.imageContainer{
+    background-color: aliceblue;
+    padding: 5px 5px;
+    margin: 5px 5px 15px 5px;
+    text-align: center;
+}
+
+img :hover{
+    border-color: gold;
+    border-style: solid;
+    border-width: 3px;
+}
+
+.imageText{
+    text-align: center;
+    color: green;
+}
+
+.jumbotron{
+    position: absolute;
+    width: 55%;
+}
+
+.yourCharacter .imageContainer{
+    border-color: green;
+    border-style: solid;
+    border-width: 5px;
+}
+
+.chooseEnemies .imageContainer{
+    background-color: red; 
+}
+
+.chooseEnemies .imageText{
+    color: white;
 }

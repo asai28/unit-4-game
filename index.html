@@ -12,59 +12,84 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
         crossorigin="anonymous">
-    <link rel="javascript" type="text/javascript" href="assets/javascript/game.js">
-
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
 
 <body style="background-image: url(http://avante.biz/wp-content/uploads/The-Powerpuff-Girls-Wallpapers/The-Powerpuff-Girls-Wallpapers-027.jpg); background-size:cover">
-    <div class="jumbotron mt-5 bg-transparent">
-        <div class="container bg-dark text-light container-fluid">
+    <div class="jumbotron ml-1 mb-1" id="gameContainer" style="background-color: black">
+        <div class="container text-light container-fluid" style="background-color: black">
             <div>
                 <span>
-                    <span class="glyphicon glyphicon-volume-down"></span>
-                    <span class="glyphicon glyphicon-volume-off"></span>
+                        <i class="fas fa-music"></i>
+                        <i class="fas fa-volume-up"></i>
+                        <i class="fas fa-volume-mute"></i>
+                        <i class="fas fa-fast-forward"></i>
+                        <i class="fas fa-volume-mute"></i>
                 </span>
             </div>
-            <div class="row attack mt-5 mb-5">
-                <h2 class="ml-3">Attacker:</h2>
-                <br>
-                <div>
-                    <img src="assets/images/270px-Powerpuff_girls_characters.jpg" alt="Powerpuff Girls" class="rounded ml-2" id="ppg">
+            <div class="row yourCharacter ">
+
+                <div class="imageContainer" id="ppg" data="PowerPuff Girls">
+                    <span class="imageText">PowerPuff Girls</span>
+                    </span>
+                    </span>
+                    </span>
+                    <br>
+                    <img src="assets/images/270px-Powerpuff_girls_characters.jpg" alt="Powerpuff Girls" class="rounded">
+                    <br>
+                    <span class="imageText">200</span>
                 </div>
-                <div>
-                    <img src="assets/images/Mojo-jojo-powerpuff-girls.jpg" alt="Mojo-jojo" class="rounded float-left ml-2" id="mojojo">
+                <div class="imageContainer float-left" id="mojojo" data="Mojo-jo">
+                    <span class="imageText">Mojo-jojo</span>
+                        <br>
+                        <img src=" assets/images/Mojo-jojo-powerpuff-girls.jpg " alt="Mojo-jojo " class="rounded">
+                        <br>
+                        <span class="imageText">125</span>
                 </div>
-                <div>
-                    <img src="assets/images/Princess_Morbucks.jpg" alt="Princess Morbucks" class="rounded float-left ml-2" id="princess">
+                <div class="imageContainer float-left" id="princess" data="Princess Morbucks">
+                    <span class="imageText">Princess Morbucks</span>
+                        <br>
+                        <img src="assets/images/Princess_Morbucks.jpg" alt="Princess Morbucks" class="rounded">
+                        <br>
+                        <span class="imageText">150</span>
                 </div>
-                <div>
-                    <img src="assets/images/Rowdyruffboystrio.jpg" alt="RowdyRuff boys" class="rounded float-left ml-2" id="rrb">
+                <div class="imageContainer float-left" id="rrb" data="Rowdy Ruff Boys">
+                    <span class="imageText">Rowdy Ruff Boys</span>
+                    </span>
+                    </span>
+                    </span>
+                    <br>
+                    <img src="assets/images/Rowdyruffboystrio.jpg" alt="RowdyRuff boys" class="rounded">
+                    <br>
+                    <span class="imageText">175</span>
                 </div>
             </div>
-            <div class="row defend mt-5 mb-5">
-                <h2 class="mt-5 ml-3">Defender:</h2>
-                <br>
-                <!-- <div>
-                    <img src="assets/images/270px-Powerpuff_girls_characters.jpg" alt="Powerpuff Girls" class="rounded ml-2" id="ppg">
-                </div>
-                <div>
-                    <img src="assets/images/Mojo-jojo-powerpuff-girls.jpg" alt="Mojo-jojo" class="rounded float-left ml-2" id="mojojo">
-                </div>
-                <div>
-                    <img src="assets/images/Princess_Morbucks.jpg" alt="Princess Morbucks" class="rounded float-left ml-2" id="princess">
-                </div>
-                <div>
-                    <img src="assets/images/Rowdyruffboystrio.jpg" alt="RowdyRuff boys" class="rounded float-left ml-2" id="rrb">
-                </div> -->
+            <h2>Your Character</h2>
+            <div class="row chooseEnemies">
             </div>
+            <h2>Enemies Available To Attack</h2>
+            <div class="row fightSection">
+            </div>
+            <h2>Fight Section</h2>
+            <button class="btn success-btn mt-5">Attack</button>
+            <div class="row attack">
+            </div>
+            <h2>Defender</h2>
+            <button class="btn success-btn mt-5">Restart</button>
             <br>
-            <button class="btn success-btn mt-5">Attack!</button>
-            <div class="row play">
-                <div class="player1"></div>
-                <div class="player2"></div>
-            </div>
         </div>
     </div>
 </body>
 
 </html>
+
+<!--
+    Code to be added later
+
+    <div class="jumbotron mt-5 bg-transparent" id="ppfVideo">
+        <video width="300" height="200" autoplay="autoplay">
+            <source src="video/supercoolvideo.mp4" type="video/mp4" />
+        </video>
+    </div>
+-->
