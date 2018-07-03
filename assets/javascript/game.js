@@ -1,19 +1,29 @@
-$(document).ready(function(){
-    var audio = new Audio("ppgbg.mp3");
-    audio.play();
-    $(".yourCharacter .imageContainer").on("click",function(){
-        $(this).siblings().appendTo(".chooseEnemies");
-        $(this).siblings().detach();
+
+$(document).ready(function () {
+    $(".yourCharacter").on("click", ".imageContainer", function () {
+        var audio = $("#myAudio");
+        audio.play();
+        console.log("hey!");
+        var siblings = $(this)
+            .siblings()
+            .removeClass("yourCharacter")
+            .detach();
+        $(".chooseEnemies").append(siblings);
     });
 
-    $(".chooseEnemies .imageContainer").on("click",function(){
-        $(this).siblings().appendTo(".fightSection");
-        $(this).siblings().detach();
+    $(".chooseEnemies").on("click", ".imageContainer", function () {
+        console.log("hellooooooooo");
+        $(this)
+            .siblings()
+            .appendTo(".fightSection");
+        $(this)
+            .siblings()
+            .detach();
     });
 });
 
 //Characters in my game
-var ppf={
+var ppf = {
     name: "PowerPuff Girls",
     healthPoints: 200,
     attackPoints: 25,
@@ -21,7 +31,7 @@ var ppf={
     tag: $("#ppg")
 };
 
-var mojojo= {
+var mojojo = {
     name: "Mojo-jo",
     healthPoints: 150,
     attackPoints: 15,
@@ -29,7 +39,7 @@ var mojojo= {
     tag: $("#mojojo")
 };
 
-var pm= {
+var pm = {
     name: "Princess Morbucks",
     healthPoints: 125,
     attackPoints: 10,
@@ -37,7 +47,7 @@ var pm= {
     tag: $("#princess")
 };
 
-var rrb= {
+var rrb = {
     name: "Rowdy Ruff Boys",
     healthPoints: 250,
     attackPoints: 20,
