@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+}
+
+.row{
+    height: 200px;
+    width: 85%;
+    text-align: center;
+}
+
+html {
+    font-size: 1rem;
+  }
+
+img{
+    width: 200px;
+    height: 200px;
+    margin: 10px 10px;
+}
+  
+h2{
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
