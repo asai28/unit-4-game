@@ -1,8 +1,7 @@
 //My audio element
 var audio = new Audio("ppgbg.mp3");
 $(document).ready(function () {
-    //Code for volume down
-
+    function defenderAttacks(){};
     //Characters in my game
     var attacker, defender;
     var characters = [ppg = {
@@ -76,6 +75,8 @@ $(document).ready(function () {
     $(".chooseEnemies").on("click", ".imageContainer", function () {
         defender = $(this).attr("data");
         console.log(defender);
+        siblings = $(this).siblings();
+        $(this).siblings().css("pointer-events", "none");
         $(this).appendTo(".fightSection");
         for (var i = 0; i < characters.length; ++i) {
             if (defender === characters[i].name) {
@@ -84,25 +85,40 @@ $(document).ready(function () {
                 console.log("Defender: " + characters[defenderIndex].name);
             }
         };
+        defenderAttacks();
+        //siblings.css("pointer-events", "auto");
     });
-
+    var intervalId;
     $(".attack").on("click", function () {
+        $("#display").empty();
+        function displayEmpty(){
+            if($("#display").empty){
+            $("#display").prepend("No enemy here.");
+            intervalId = setInterval(displayEmpty, 4* 1000);
+        }
+        if($("#display1","#display2").empty === false){
+            clearInterval(intervalId);
+        }
+        }
+            
+        
         setTimeout(defenderAttacks, 1000);
         setTimeout(attackerAttacks, 1000);
         function defenderAttacks() {
-            characters[attackerIndex].healthPoints -= characters[defenderIndex].counterAttackPoints;
+            characters[attackerIndex].healthPoints -= characters[defenderIndex].attackPoints;
             console.log(characters[attackerIndex].healthPoints);
-            $("#display").text(defender + " attacked you for " + characters[defenderIndex].attackPoints + " points. Your current health is " + characters[attackerIndex].healthPoints);
-            $(".imageTextScore",".imageContainer",".fightSection").text(characters[attackerIndex].healthPoints);
+            $("#display").prepend("<h5>"+defender + " attacked you for " + characters[defenderIndex].attackPoints + " points. Your current health is " + characters[attackerIndex].healthPoints+"</h5>");
+            
             if (characters[attackerIndex].healthPoints <= 0) {
                 $("#display").empty();
                 $(".restart").show();
-                $("#display").text("You Lost! Click on the restart button to start a new game.");
+                $("#display").prepend("<h5>You Lost! Click on the restart button to start a new game.</h5>");
             }
             else if (characters[defenderIndex].healthPoints <= 0) {
                 $(".fightSection").detach();
+                $(".chooseEnemies",".imageContainer").unbind("click",false)
                 $("#display").empty();
-                $("#display").text("You Won! Click on another character to continue the game.");
+                $("#display").prepend("<h5>You Won! Click on another character to continue the game.</h5>");
                 $(".chooseEnemies").on("click", ".imageContainer", function () {
                     defender = $(this).attr("data");
                     $(this).appendTo(".fightSection");
@@ -118,20 +134,20 @@ $(document).ready(function () {
         }
         function attackerAttacks() {
             console.log("AttackPoints: "+ characters[attackerIndex].attackPoints);
-            characters[defenderIndex].healthPoints -= characters[attackerIndex].counterAttackPoints;
-            characters[attackerIndex].attackPoints += characters[attackerIndex].attackPoints;
+            characters[defenderIndex].healthPoints -= characters[attackerIndex].attackPoints;
+            characters[attackerIndex].attackPoints += 5;
             console.log(characters[defenderIndex].healthPoints);
-            $("#display").text("You attacked defender for " + characters[attackerIndex].attackPoints + " points.");
-            $(".imageTextScore",".imageContainer",".yourCharacter").text(characters[defenderIndex].healthPoints);
+            $("#display").prepend("<h5>You attacked "+ defender+ " for " + characters[attackerIndex].attackPoints + " points.</h5>");
+            
             if (characters[attackerIndex].healthPoints <= 0) {
                 $("#display").empty();
                 $(".restart").show();
-                $("#display").text("You Lost! Click on the restart button to start a new game.");
+                $("#display").prepend("<h5>You have been defeated! Click on the restart button to start a new game.</h5>");
             }
             else if (characters[defenderIndex].healthPoints <= 0) {
                 $(".fightSection").detach();
                 $("#display").empty();
-                $("#display").text("You Won! Click on another character to continue the game.");
+                $("#display").prepend("<h5>You have defeated "+ defender+ " .Click on another character to continue the game.</h5>");
             }
         }
 
