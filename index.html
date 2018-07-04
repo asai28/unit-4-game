@@ -7,11 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Powerpuff Girls Game!</title>
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <script type="text/javascript" src="assets/javascript/game.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
@@ -22,47 +23,46 @@
             <div>
                 <span class="fa-3x">
                         <i class="fas fa-music" style= "color: orange;"></i>
-                        <i class="fas fa-volume-up" style= "color: palevioletred;"></i>
-                        <i class="fas fa-volume-mute" style= "color: palevioletred;"></i>
-                        <!-- <i class="fas fa-volume-mute" style= "color: purple;"></i> -->
+                        <i class="fas fa-volume-up" style= "color: palevioletred;" value="0.5" min="0" max="1" step="0.1" type="range"></i>
+                        <i class="fas fa-volume-down" style= "color: palevioletred;" value="0.5" min="0" max="1" step="0.1" type="range"></i>
                         <i class="fas fa-fast-forward" style= "color: greenyellow;"></i>
                 </span>
             </div>
             <div class="row yourCharacter ">
 
                 <div class="imageContainer" id="ppg" data="PowerPuff Girls">
-                    <span class="imageText">PowerPuff Girls</span>
+                    <span class="imageTextName">PowerPuff Girls</span>
                     </span>
                     </span>
                     </span>
                     <br>
                     <img src="assets/images/270px-Powerpuff_girls_characters.jpg" alt="Powerpuff Girls" class="rounded">
                     <br>
-                    <span class="imageText">200</span>
+                    <span class="imageTextScore">200</span>
                 </div>
                 <div class="imageContainer float-left" id="mojojo" data="Mojo-jo">
-                    <span class="imageText">Mojo-jojo</span>
+                    <span class="imageTextName">Mojo-jojo</span>
                         <br>
                         <img src=" assets/images/Mojo-jojo-powerpuff-girls.jpg " alt="Mojo-jojo " class="rounded">
                         <br>
-                        <span class="imageText">125</span>
+                        <span class="imageTextScore">150</span>
                 </div>
                 <div class="imageContainer float-left" id="princess" data="Princess Morbucks">
-                    <span class="imageText">Princess Morbucks</span>
+                    <span class="imageTextName">Princess Morbucks</span>
                         <br>
                         <img src="assets/images/Princess_Morbucks.jpg" alt="Princess Morbucks" class="rounded">
                         <br>
-                        <span class="imageText">150</span>
+                        <span class="imageTextScore">175</span>
                 </div>
                 <div class="imageContainer float-left" id="rrb" data="Rowdy Ruff Boys">
-                    <span class="imageText">Rowdy Ruff Boys</span>
+                    <span class="imageTextName">Rowdy Ruff Boys</span>
                     </span>
                     </span>
                     </span>
                     <br>
                     <img src="assets/images/Rowdyruffboystrio.jpg" alt="RowdyRuff boys" class="rounded">
                     <br>
-                    <span class="imageText">175</span>
+                    <span class="imageTextScore">250</span>
                 </div>
             </div>
             <h2>Your Character</h2>
@@ -72,12 +72,13 @@
             <div class="row fightSection">
             </div>
             <h2>Fight Section</h2>
-            <button class="btn success-btn mt-5">Attack</button>
+            <button class="btn success-btn mt-5 attack">Attack</button>
             <div class="row attack">
             </div>
             <h2>Defender</h2>
-            <button class="btn success-btn mt-5">Restart</button>
+            <button class="btn success-btn mt-5 restart" value="Refresh Page" onClick="window.location.reload()">Restart</button>
             <br>
+            <h5 id="display"></h5>
         </div>
     </div>
 </body>

@@ -67,3 +67,11 @@ img :hover{
 .chooseEnemies .imageText{
     color: white;
 }
+
+.fightSection .imageContainer{
+    color: green;
+}
+
+.yourCharacter .imageContainer{
+    color: green;
+}
