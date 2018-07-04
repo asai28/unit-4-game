@@ -1,9 +1,7 @@
-
+var audio = new Audio("ppgbg.mp3");
 $(document).ready(function () {
     $(".yourCharacter").on("click", ".imageContainer", function () {
-        var audio = $("#myAudio");
         audio.play();
-        console.log("hey!");
         var siblings = $(this)
             .siblings()
             .removeClass("yourCharacter")
@@ -12,13 +10,14 @@ $(document).ready(function () {
     });
 
     $(".chooseEnemies").on("click", ".imageContainer", function () {
-        console.log("hellooooooooo");
-        $(this)
-            .siblings()
-            .appendTo(".fightSection");
-        $(this)
-            .siblings()
-            .detach();
+        $(this).appendTo(".fightSection");
+        // $(this)
+        //     .siblings()
+        //     .detach();
+    });
+
+    $(".fa-volume-mute").on("click",function(){
+        audio.pause();
     });
 });
 
