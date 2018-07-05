@@ -1,51 +1,78 @@
 //My audio element
 var audio = new Audio("ppgbg.mp3");
+audio.volume = 0.5;
+var defenderIndex, attackerIndex ,attacker, defender;
+var characters = [{
+    name: "PowerPuff Girls",
+    healthPoints: 230,
+    attackPoints: 25,
+    counterAttackPoints: 10,
+    tag: "#ppg"
+},
+{
+    name: "Mojo-jo",
+    healthPoints: 150,
+    attackPoints: 15,
+    counterAttackPoints: 5,
+    tag: "#mojojo"
+},
+{
+    name: "Princess Morbucks",
+    healthPoints: 125,
+    attackPoints: 10,
+    counterAttackPoints: 3,
+    tag: "#princess"
+},
+{
+    name: "Rowdy Ruff Boys",
+    healthPoints: 250,
+    attackPoints: 20,
+    counterAttackPoints: 15,
+    tag: "#rrb"
+}
+];
+var flag = true;
 $(document).ready(function () {
-    function defenderAttacks(){};
     //Characters in my game
-    var attacker, defender;
-    var characters = [ppg = {
-        name: "PowerPuff Girls",
-        healthPoints: 200,
-        attackPoints: 25,
-        counterAttackPoints: 20,
-        tag: "#ppg"
-    },
-    mj = {
-        name: "Mojo-jo",
-        healthPoints: 150,
-        attackPoints: 15,
-        counterAttackPoints: 12,
-        tag: "#mojojo"
-    },
-    pm = {
-        name: "Princess Morbucks",
-        healthPoints: 125,
-        attackPoints: 10,
-        counterAttackPoints: 8,
-        tag: "#princess"
-    },
-    rrb = {
-        name: "Rowdy Ruff Boys",
-        healthPoints: 250,
-        attackPoints: 20,
-        counterAttackPoints: 15,
-        tag: "#rrb"
-    }
-    ];
-
     $(".yourCharacter").on("click", ".imageContainer", function () {
         audio.play();
         attacker = $(this).attr("data");
+        console.log(attacker);
         var siblings = $(this).siblings().removeClass("yourCharacter").detach();
         $(".chooseEnemies").append(siblings);
-        for (var i = 0; i < characters.length; ++i) {
-            if (attacker === characters[i].name) {
-                attackerIndex = i;
-                console.log("Attacker object: " + JSON.stringify(characters[attackerIndex]));
-            }
-        }
+        initialize();
     });
+
+    
+    $(".chooseEnemies").on("click", ".imageContainer", function () {
+        if (flag) {
+            defender = $(this).attr("data");
+            console.log(defender);
+            $(this).appendTo(".fightSection");
+            flag = false;
+        }
+        initialize();
+    });
+
+
+function initialize(){
+    for (var i = 0; i < characters.length; ++i) {
+        console.log("Defender: "+defender);
+        console.log("Attacker: "+ attacker);
+        console.log("Character: "+characters[i].name);
+        console.log("Attacker Index: "+ attackerIndex);
+        console.log("Defender Index: "+ defenderIndex);
+        if (defender === characters[i].name) {
+            defenderIndex = i;
+            console.log("Defender: " + characters[defenderIndex].name);
+        }
+        if (attacker === characters[i].name) {
+            attackerIndex = i;
+            console.log("Attacker object: " + JSON.stringify(characters[attackerIndex]));
+        }
+    }
+}
+
 
     $(".restart").hide();
 
@@ -72,86 +99,56 @@ $(document).ready(function () {
     });
 
 
-    $(".chooseEnemies").on("click", ".imageContainer", function () {
-        defender = $(this).attr("data");
-        console.log(defender);
-        siblings = $(this).siblings();
-        $(this).siblings().css("pointer-events", "none");
-        $(this).appendTo(".fightSection");
-        for (var i = 0; i < characters.length; ++i) {
-            if (defender === characters[i].name) {
-                defenderIndex = i;
-                console.log("Defender: " + JSON.stringify(characters[defenderIndex]));
-                console.log("Defender: " + characters[defenderIndex].name);
-            }
-        };
-        defenderAttacks();
-        //siblings.css("pointer-events", "auto");
-    });
     var intervalId;
     $(".attack").on("click", function () {
-        $("#display").empty();
-        function displayEmpty(){
-            if($("#display").empty){
-            $("#display").prepend("No enemy here.");
-            intervalId = setInterval(displayEmpty, 4* 1000);
-        }
-        if($("#display1","#display2").empty === false){
-            clearInterval(intervalId);
-        }
-        }
-            
-        
-        setTimeout(defenderAttacks, 1000);
         setTimeout(attackerAttacks, 1000);
+        setTimeout(defenderAttacks, 1000);
+        if($(".fightSection imageContainer").empty){
+            setTimeout(function(){$("#display").html("<h6>No enemies here</h6>")}, 1000);
+        }
+        $("#display","h6").remove();
+
+    });
+      
         function defenderAttacks() {
-            characters[attackerIndex].healthPoints -= characters[defenderIndex].attackPoints;
+            characters[attackerIndex].healthPoints = characters[attackerIndex].healthPoints - characters[defenderIndex].counterAttackPoints;
             console.log(characters[attackerIndex].healthPoints);
-            $("#display").prepend("<h5>"+defender + " attacked you for " + characters[defenderIndex].attackPoints + " points. Your current health is " + characters[attackerIndex].healthPoints+"</h5>");
-            
+            $("#display").append("<h5>" + defender + " attacked you back for " + characters[defenderIndex].attackPoints + " damage.</h5>");
+            console.log(characters[attackerIndex].tag);
+            $(characters[attackerIndex].tag).text(characters[attackerIndex].healthPoints) ;
             if (characters[attackerIndex].healthPoints <= 0) {
                 $("#display").empty();
                 $(".restart").show();
-                $("#display").prepend("<h5>You Lost! Click on the restart button to start a new game.</h5>");
+                $("#display").append("<h5>You Lost! Click on the restart button to start a new game.</h5>");
             }
             else if (characters[defenderIndex].healthPoints <= 0) {
-                $(".fightSection").detach();
-                $(".chooseEnemies",".imageContainer").unbind("click",false)
+                $(".fightSection").empty();
                 $("#display").empty();
-                $("#display").prepend("<h5>You Won! Click on another character to continue the game.</h5>");
-                $(".chooseEnemies").on("click", ".imageContainer", function () {
-                    defender = $(this).attr("data");
-                    $(this).appendTo(".fightSection");
-                    for (var i = 0; i < characters.length; ++i) {
-                        if (defender === characters[i].name) {
-                            defenderIndex = i;
-                            console.log("Defender: " + JSON.stringify(characters[defenderIndex]));
-                            console.log("Defender: " + characters[defenderIndex].name);
-                        }
-                    };
-                });
+                $("#display").append("<h5>You Won! Click on another character to continue the game.</h5>");
+
             }
         }
         function attackerAttacks() {
-            console.log("AttackPoints: "+ characters[attackerIndex].attackPoints);
-            characters[defenderIndex].healthPoints -= characters[attackerIndex].attackPoints;
-            characters[attackerIndex].attackPoints += 5;
+            console.log("AttackPoints: " + characters[attackerIndex].attackPoints);
+            characters[defenderIndex].healthPoints = characters[defenderIndex].healthPoints - characters[attackerIndex].counterAttackPoints;
+            characters[attackerIndex].counterAttackPoints +=  characters[attackerIndex].counterAttackPoints;
             console.log(characters[defenderIndex].healthPoints);
-            $("#display").prepend("<h5>You attacked "+ defender+ " for " + characters[attackerIndex].attackPoints + " points.</h5>");
-            
+            $("#display").append("<h5>You attacked " + defender + " for " + characters[attackerIndex].attackPoints + " damage.</h5>");
+            $(characters[defenderIndex].tag).text(characters[defenderIndex].healthPoints) ;
             if (characters[attackerIndex].healthPoints <= 0) {
                 $("#display").empty();
                 $(".restart").show();
-                $("#display").prepend("<h5>You have been defeated! Click on the restart button to start a new game.</h5>");
+                $("#display").append("<h5>You have been defeated! Click on the restart button to start a new game.</h5>");
             }
             else if (characters[defenderIndex].healthPoints <= 0) {
                 $(".fightSection").detach();
                 $("#display").empty();
-                $("#display").prepend("<h5>You have defeated "+ defender+ " .Click on another character to continue the game.</h5>");
+                $("#display").append("<h5>You have defeated " + defender + " .Click on another character to continue the game.</h5>");
+                flag = true;
             }
         }
 
-    });
+    
 
     $(".restart").on("click", function () {
 
