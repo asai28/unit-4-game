@@ -5,30 +5,34 @@ var defenderIndex, attackerIndex ,attacker, defender;
 var characters = [{
     name: "PowerPuff Girls",
     healthPoints: 230,
-    attackPoints: 25,
+    attackPoints: 13,
     counterAttackPoints: 10,
-    tag: "#ppg"
+    tag: "#ppg",
+    baseAttackPoints: 8
 },
 {
     name: "Mojo-jo",
     healthPoints: 150,
     attackPoints: 15,
-    counterAttackPoints: 5,
-    tag: "#mojojo"
+    counterAttackPoints: 10,
+    tag: "#mojojo",
+    baseAttackPoints: 5
 },
 {
     name: "Princess Morbucks",
     healthPoints: 125,
     attackPoints: 10,
-    counterAttackPoints: 3,
-    tag: "#princess"
+    counterAttackPoints: 7,
+    tag: "#princess",
+    baseAttackPoints: 4
 },
 {
     name: "Rowdy Ruff Boys",
     healthPoints: 250,
     attackPoints: 20,
     counterAttackPoints: 15,
-    tag: "#rrb"
+    tag: "#rrb",
+    baseAttackPoints: 10
 }
 ];
 var flag = true;
@@ -114,12 +118,15 @@ function initialize(){
             characters[attackerIndex].healthPoints = characters[attackerIndex].healthPoints - characters[defenderIndex].counterAttackPoints;
             console.log(characters[attackerIndex].healthPoints);
             $("#display").append("<h5>" + defender + " attacked you back for " + characters[defenderIndex].attackPoints + " damage.</h5>");
-            console.log(characters[attackerIndex].tag);
             $(characters[attackerIndex].tag).text(characters[attackerIndex].healthPoints) ;
             if (characters[attackerIndex].healthPoints <= 0) {
                 $("#display").empty();
                 $(".restart").show();
                 $("#display").append("<h5>You Lost! Click on the restart button to start a new game.</h5>");
+            }
+            else if (characters[defenderIndex].healthPoints <= 0 && $(".chooseEnemies").empty) {
+                $("#display").empty();
+                $("#display").append("<h5>You Won! Congratulations</h5>");
             }
             else if (characters[defenderIndex].healthPoints <= 0) {
                 $(".fightSection").empty();
@@ -130,8 +137,8 @@ function initialize(){
         }
         function attackerAttacks() {
             console.log("AttackPoints: " + characters[attackerIndex].attackPoints);
-            characters[defenderIndex].healthPoints = characters[defenderIndex].healthPoints - characters[attackerIndex].counterAttackPoints;
-            characters[attackerIndex].counterAttackPoints +=  characters[attackerIndex].counterAttackPoints;
+            characters[defenderIndex].healthPoints = characters[defenderIndex].healthPoints - characters[attackerIndex].attackPoints;
+            characters[attackerIndex].attackPoints +=  characters[attackerIndex].baseAttackPoints;
             console.log(characters[defenderIndex].healthPoints);
             $("#display").append("<h5>You attacked " + defender + " for " + characters[attackerIndex].attackPoints + " damage.</h5>");
             $(characters[defenderIndex].tag).text(characters[defenderIndex].healthPoints) ;
