@@ -110,8 +110,8 @@ $(document).ready(function () {
         if (defenderIndex === -1) {
             setTimeout(function () { $("#display").html("<h6>No enemies here</h6>") }, 1000);
         }
-        // else {
-
+        attackerAttacks();
+        defenderAttacks();
             $("#display").empty();
              
             if (characters[attackerIndex].healthPoints <= 0) {
@@ -126,18 +126,7 @@ $(document).ready(function () {
                     $(".fightSection").empty();
                     console.log($(".fightSection").html());
                     flag = true;
-                    if( $('.chooseEnemies:empty').length === 0 ) {
-                    $("#display").empty();
-                    $("#display").html("<h5>You Won! Congratulations!!!</h5>");
-                }
             }
-            else{
-                setTimeout(attackerAttacks, 1000);
-                setTimeout(defenderAttacks, 1000);
-            }
-        // }
-        
-
     });
 
     function defenderAttacks() {
@@ -146,6 +135,10 @@ $(document).ready(function () {
         $("#display").append("<h5>" + defender + " attacked you back for " + characters[defenderIndex].attackPoints + " damage.</h5>");
         $(characters[attackerIndex].tag).text(characters[attackerIndex].healthPoints);
         
+        if( $('.chooseEnemies:empty').length === 0 && $('.fightSection:empty').length === 0) {
+            $("#display").empty();
+            $("#display").html("<h5>You Won! Congratulations!!!</h5>");
+        }
         // if (characters[attackerIndex].healthPoints <= 0) {
         //     $("#display").empty();
         //     $(".restart").show();
@@ -170,6 +163,11 @@ $(document).ready(function () {
         console.log(characters[defenderIndex].healthPoints);
         $("#display").append("<h5>You attacked " + defender + " for " + characters[attackerIndex].attackPoints + " damage.</h5>");
         $(characters[defenderIndex].tag).text(characters[defenderIndex].healthPoints);
+        
+        if( $('.chooseEnemies:empty').length === 0 && $('.fightSection:empty').length === 0) {
+            $("#display").empty();
+            $("#display").html("<h5>You Won! Congratulations!!!</h5>");
+        }
         // if (characters[attackerIndex].healthPoints <= 0) {
         //     $("#display").empty();
         //     $(".restart").show();
