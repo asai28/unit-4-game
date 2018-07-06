@@ -107,9 +107,9 @@ $(document).ready(function () {
     var intervalId;
     $(".attack").on("click", function () {
         
-        // if ($(".fightSection").empty) {
-        //     setTimeout(function () { $("#display").html("<h6>No enemies here</h6>") }, 1000);
-        // }
+        if (defenderIndex === -1) {
+            setTimeout(function () { $("#display").html("<h6>No enemies here</h6>") }, 1000);
+        }
         // else {
 
             $("#display").empty();
@@ -122,6 +122,7 @@ $(document).ready(function () {
             else if (characters[defenderIndex].healthPoints <= 0) {
                 console.log("I am set defender lost true.");
                     $("#display").append("<h5>You have defeated " + defender + " .Click on another character to continue the game.</h5>");
+                    defenderIndex = -1;
                     $(".fightSection").empty();
                     console.log($(".fightSection").html());
                     flag = true;
@@ -144,6 +145,7 @@ $(document).ready(function () {
         console.log(characters[attackerIndex].healthPoints);
         $("#display").append("<h5>" + defender + " attacked you back for " + characters[defenderIndex].attackPoints + " damage.</h5>");
         $(characters[attackerIndex].tag).text(characters[attackerIndex].healthPoints);
+        
         // if (characters[attackerIndex].healthPoints <= 0) {
         //     $("#display").empty();
         //     $(".restart").show();
