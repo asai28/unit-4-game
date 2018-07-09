@@ -14,21 +14,22 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Chela+One" rel="stylesheet">
 </head>
 
-<body style="background-image: url(http://avante.biz/wp-content/uploads/The-Powerpuff-Girls-Wallpapers/The-Powerpuff-Girls-Wallpapers-027.jpg); background-size:cover">
+<body>
     <div class="jumbotron ml-1 mb-1" id="gameContainer" style="background-color: black">
-        <div class="container text-light container-fluid" style="background-color: black">
-            <div>
-                <span class="fa-3x">
+            <div class="container text-light container-fluid" style="background-color: black">
+            <div id="title">The RPG Game</div>    
+            <div class="icons">
+                <span class="fa-2x">
                         <i class="fas fa-music" style= "color: orange;"></i>
                         <i class="fas fa-volume-up" style= "color: palevioletred;" value="0.5" min="0" max="1" step="0.1" type="range"></i>
                         <i class="fas fa-volume-down" style= "color: palevioletred;" value="0.5" min="0" max="1" step="0.1" type="range"></i>
-                        <!-- <i class="fas fa-fast-forward" style= "color: greenyellow;"></i> -->
                 </span>
-            </div>
+            </div><br>
             <div class="row yourCharacter ">
-
+                
                 <div class="imageContainer" data="PowerPuff Girls">
                     <span class="imageTextName">PowerPuff Girls</span>
                     </span>
@@ -39,6 +40,8 @@
                     <br>
                     <span class="imageTextScore" id="ppg" >200</span>
                 </div>
+          
+            
                 <div class="imageContainer float-left" data="Mojo-jo">
                     <span class="imageTextName">Mojo-jojo</span>
                         <br>
@@ -46,6 +49,8 @@
                         <br>
                         <span class="imageTextScore" id="mojojo">150</span>
                 </div>
+            
+            
                 <div class="imageContainer float-left" data="Princess Morbucks">
                     <span class="imageTextName">Princess Morbucks</span>
                         <br>
@@ -53,6 +58,8 @@
                         <br>
                         <span class="imageTextScore" id="princess">175</span>
                 </div>
+                
+                
                 <div class="imageContainer float-left" data="Rowdy Ruff Boys">
                     <span class="imageTextName">Rowdy Ruff Boys</span>
                     </span>
@@ -63,23 +70,24 @@
                     <br>
                     <span class="imageTextScore" id="rrb">250</span>
                 </div>
-            </div>
-            <h4>Your Character</h4>
+            
+        </div>
+            <h5>Your Character</h5>
             <div class="row chooseEnemies">
             </div>
-            <h4>Enemies Available To Attack</h4>
+            <h5>Enemies Available To Attack</h5>
             <div class="row fightSection">
             </div>
-            <h4>Fight Section</h4>
+            <h5>Fight Section</h5>
             <button class="btn success-btn mt-5 attack">Attack</button>
             <div class="row attack">
-            </div>
-            <h4>Defender</h4>
+            </div><br>
+            <h5>Defender</h5>
             <button class="btn success-btn mt-5 restart" value="Refresh Page" onClick="window.location.reload()">Restart</button>
             <br>
             <div id="display"></div>
-            <!-- <h5 id="display2"></h5> -->
         </div>
+    </div>
     </div>
     <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>

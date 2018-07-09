@@ -1,6 +1,6 @@
 //My audio element
-//var audio = new Audio("ppgbg.mp3");
-//audio.volume = 0.5;
+var audio = new Audio("ppgbg.mp3");
+audio.volume = 0.5;
 var defenderIndex, attackerIndex, attacker, defender, character;
 var characters = [{
     name: "PowerPuff Girls",
@@ -43,7 +43,8 @@ var flag = true;
 $(document).ready(function () {
     //Characters in my game
     $(".yourCharacter").on("click", ".imageContainer", function () {
-        //audio.play();
+        $("#display").empty();
+        audio.play();
         attacker = $(this).attr("data");
         var siblings = $(this).siblings().removeClass("yourCharacter").remove();
         $(".chooseEnemies").append(siblings);
@@ -74,33 +75,30 @@ $(document).ready(function () {
         }
     }
 
-
     $(".restart").hide();
 
-    // $(".fa-music").on("click", function () {
-    //     if (audio.paused) {
-    //         audio.play();
-    //     }
-    //     else {
-    //         audio.pause();
-    //     }
+    $(".fa-music").on("click", function () {
+        if (audio.paused) {
+            audio.play();
+        }
+        else {
+            audio.pause();
+        }
 
-    // });
+    });
 
-    // $(".fa-volume-up").on("click", function () {
-    //     if (audio.volume < 1.0) {
-    //         audio.volume += 0.1;
-    //     }
-    // });
+    $(".fa-volume-up").on("click", function () {
+        if (audio.volume < 1.0) {
+            audio.volume += 0.1;
+        }
+    });
 
-    // $(".fa-volume-down").on("click", function () {
-    //     if (audio.volume > 0) {
-    //         audio.volume -= 0.1;
-    //     }
-    // });
+    $(".fa-volume-down").on("click", function () {
+        if (audio.volume > 0) {
+            audio.volume -= 0.1;
+        }
+    });
 
-
-    var intervalId;
     $(".attack").on("click", function () {
 
         if( !$.trim( $('.fightSection').html() ).length) {
@@ -115,7 +113,7 @@ $(document).ready(function () {
                 $(".restart").show();
             }
             else if (characters[defenderIndex].healthPoints <= 0) {
-                $("#display").append("<h5>You have defeated " + defender + " .Click on another character to continue the game.</h5>");
+                $("#display").append("<h5>You have defeated " + defender + ". Click on another character to continue the game.</h5>");
                 players.splice( players.indexOf(defenderIndex), 1);
                 $(".fightSection").empty();
                 flag = true;
@@ -133,41 +131,11 @@ $(document).ready(function () {
         characters[attackerIndex].healthPoints = characters[attackerIndex].healthPoints - characters[defenderIndex].counterAttackPoints;
         $("#display").append("<h5>" + defender + " attacked you back for " + characters[defenderIndex].attackPoints + " damage.</h5>");
         $(characters[attackerIndex].tag).text(characters[attackerIndex].healthPoints);
-        
-        // if (characters[attackerIndex].healthPoints <= 0) {
-        //     $("#display").empty();
-        //     $(".restart").show();
-        //     $("#display").html("<h5>You Lost! Click on the restart button to start a new game.</h5>");
-        // }
-        // else if (characters[defenderIndex].healthPoints <= 0 && $(".chooseEnemies").empty) {
-        //     $("#display").empty();
-        //     $("#display").html("<h5>You Won! Congratulations!!!</h5>");
-        // }
-        // else if (characters[defenderIndex].healthPoints <= 0) {
-        //     //$(".fightSection").empty();
-        //     $(".fightSection").detach(".imageContainer");
-        //     $("#display").empty();
-        //     $("#display").html("<h5>You have defeated " + defender + " .Click on another character to continue the game.</h5>");
-
-        // }
     }
     function attackerAttacks() {
         characters[defenderIndex].healthPoints = characters[defenderIndex].healthPoints - characters[attackerIndex].attackPoints;
         characters[attackerIndex].attackPoints += characters[attackerIndex].baseAttackPoints;
         $("#display").append("<h5>You attacked " + defender + " for " + characters[attackerIndex].attackPoints + " damage.</h5>");
         $(characters[defenderIndex].tag).text(characters[defenderIndex].healthPoints);
-
-
-        // if (characters[attackerIndex].healthPoints <= 0) {
-        //     $("#display").empty();
-        //     $(".restart").show();
-        //     $("#display").html("<h5>You have been defeated! Click on the restart button to start a new game.</h5>");
-        // }
-        // else if (characters[defenderIndex].healthPoints <= 0) {
-        //     $(".fightSection").detach(".imageContainer");
-        //     $("#display").empty();
-        //     $("#display").html("<h5>You have defeated " + defender + " .Click on another character to continue the game.</h5>");
-        //     flag = true;
-        // }
     }
 });
