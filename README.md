@@ -8,4 +8,7 @@
 5. Attack till you are the sole survivor.
 6. If you die before defeating all the defenders, you lose. Else, you win.
 
-![screenshot](assets/images/Screenshot (20).png)
+### Screenshot of the game:
+ ![Hangman Game](assets/images/Screenshot (20).PNG)
+ 
+Hope you like the game!
