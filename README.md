@@ -9,6 +9,6 @@
 6. If you die before defeating all the defenders, you lose. Else, you win.
 
 ### Screenshot of the game:
- ![Hangman Game](assets/images/Screenshot (20).PNG)
+ ![RPG Game](assets/images/Screenshot.PNG)
  
 Hope you like the game!
